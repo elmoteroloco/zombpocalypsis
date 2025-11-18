@@ -1,42 +1,23 @@
-const mockProducts = [
-    { id: "1", name: "Machete Táctico", stock: 15, price: 80 },
-    { id: "2", name: "Kit de Primeros Auxilios Avanzado", stock: 30, price: 120 },
-    { id: "3", name: "Ración de Supervivencia (72hs)", stock: 100, price: 50 },
-]
+import * as ProductModel from "../models/product.model.js"
 
 async function findAll() {
-    return mockProducts
+    return ProductModel.findAll()
 }
 
 async function findById(id) {
-    return mockProducts.find((p) => p.id === id)
+    return ProductModel.findById(id)
 }
 
 async function create(productData) {
-    const newProduct = {
-        id: (mockProducts.length + 1).toString(),
-        ...productData,
-    }
-    mockProducts.push(newProduct)
-    return newProduct
+    return ProductModel.create(productData)
 }
 
 async function remove(id) {
-    const index = mockProducts.findIndex((p) => p.id === id)
-    if (index !== -1) {
-        mockProducts.splice(index, 1)
-        return true
-    }
-    return false
+    return ProductModel.remove(id)
 }
 
 async function update(id, productData) {
-    const index = mockProducts.findIndex((p) => p.id === id)
-    if (index !== -1) {
-        mockProducts[index] = { ...mockProducts[index], ...productData }
-        return mockProducts[index]
-    }
-    return null
+    return ProductModel.update(id, productData)
 }
 
 export { findAll, findById, create, remove, update }
