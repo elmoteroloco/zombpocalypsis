@@ -1,21 +1,12 @@
 import { Router } from "express"
+import { getAllProducts, getProductById, createProduct, deleteProduct } from "../controllers/products.controller.js"
 
 const router = Router()
 
-router.get("/products", (req, res) => {
-    res.json({ message: "Devuelve todos los productos" })
-})
-
-router.get("/products/:id", (req, res) => {
-    res.json({ message: `Devuelve el producto con id ${req.params.id}` })
-})
-
-router.post("/products/create", (req, res) => {
-    res.json({ message: "Crea un nuevo producto" })
-})
-
-router.delete("/products/:id", (req, res) => {
-    res.json({ message: `Elimina el producto con id ${req.params.id}` })
-})
+router.get("/products", getAllProducts)
+router.get("/products/:id", getProductById)
+router.post("/products", createProduct) // Cambiado de /create a solo /
+router.post("/products/create", createProduct)
+router.delete("/products/:id", deleteProduct)
 
 export default router
