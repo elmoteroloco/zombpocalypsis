@@ -47,4 +47,19 @@ async function deleteProduct(req, res) {
     }
 }
 
-export { getAllProducts, getProductById, createProduct, deleteProduct }
+async function updateProduct(req, res) {
+    const { id } = req.params
+    const productData = req.body
+    try {
+        const updatedProduct = await ProductService.update(id, productData)
+        if (updatedProduct) {
+            res.status(200).json(updatedProduct)
+        } else {
+            res.status(404).json({ message: `No se encontró el producto con id ${id}` })
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Hubo un error al actualizar el producto." })
+    }
+}
+
+export { getAllProducts, getProductById, createProduct, deleteProduct, updateProduct }

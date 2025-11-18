@@ -30,4 +30,13 @@ async function remove(id) {
     return false
 }
 
-export { findAll, findById, create, remove }
+async function update(id, productData) {
+    const index = mockProducts.findIndex((p) => p.id === id)
+    if (index !== -1) {
+        mockProducts[index] = { ...mockProducts[index], ...productData }
+        return mockProducts[index]
+    }
+    return null
+}
+
+export { findAll, findById, create, remove, update }
