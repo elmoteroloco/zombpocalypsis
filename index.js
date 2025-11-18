@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 
 import productRoutes from "./src/routes/products.routes.js"
 import authRoutes from "./src/routes/auth.routes.js"
+import { verifyToken } from "./src/middleware/authentication.middleware.js"
 
 dotenv.config()
 
@@ -14,6 +15,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/api", authRoutes)
+
+app.use(verifyToken)
 app.use("/api", productRoutes)
 
 app.use((req, res, next) => {
