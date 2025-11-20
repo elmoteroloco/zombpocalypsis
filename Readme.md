@@ -49,14 +49,15 @@ La API reclama autenticación para todas las rutas, exceptuando la necesaria par
 
 **Body (JSON):**
 
-```json
-{
+`{
     "email": "sobreviviente@zombpocalypsis.com",
     "password": "alguna-contraseña-segura"
-}
+}`
 
 
 (Los datos de email y contraseña son solo un ejemplo)
+
+Las contraseñas de los usuarios se almacenan de forma segura en la base de datos utilizando el algoritmo *bcryptjs*. Además, el sistema de autenticación distingue entre usuarios con rol de "administrador" y usuarios con rol de "jugador", permitiendo controlar el acceso a las diferentes funcionalidades de la API.
 
 ## Endpoints
 **Productos (Inventario)**
@@ -124,9 +125,16 @@ El proyecto sigue una arquitectura por capas para separar responsabilidades:
 **Modelos (models):** Interactúan directamente con la base de datos (Firestore).
 
 ### Tecnologías Utilizadas
-*Node.js y Express:* Para la creación del servidor.
-*Firebase (Firestore):* Como base de datos NoSQL en la nube.
-*Cloudinary:* Para el alojamiento y gestión de las imágenes de los productos.
-*JSON Web Tokens (JWT):* Para la autenticación y protección de rutas.
-*dotenv:* Para el manejo de variables de entorno.
-*cors y express.json():* Middlewares esenciales para la comunicación y el parseo de peticiones.
+*- Node.js y Express:* Para la creación del servidor.
+
+*- Firebase (Firestore):* Como base de datos NoSQL en la nube.
+
+*- Cloudinary:* Para el alojamiento y gestión de las imágenes de los productos.
+
+*- JSON Web Tokens (JWT):* Para la autenticación y protección de rutas.
+
+*- bcryptjs:* Para el hasheo seguro de contraseñas.
+
+*- dotenv:* Para el manejo de variables de entorno.
+
+*- cors y express.json():* Middlewares esenciales para la comunicación y el parseo de peticiones.
