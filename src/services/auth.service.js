@@ -1,15 +1,28 @@
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
+import bcrypt from "bcryptjs"
+import * as UserModel from "../models/user.model.js"
 
 dotenv.config()
 
-const HARDCODED_EMAIL = "test@gmail.com"
-const HARDCODED_PASSWORD = "123456"
-
 async function login(email, password) {
-    if (email === HARDCODED_EMAIL && password === HARDCODED_PASSWORD) {
-        const user = { email: email, role: "survivor" }
-        const token = jwt.sign(user, process.env.JWT_SECRET_KEY, {
+    const user = await UserModel.findByEmail(email)
+
+    if (!user) {
+        const error = new Error("Credenciales inválidas.")
+        error.status = 401
+        throw error
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password)
+
+    if (isPasswordCorrect) {
+        const userPayload = {
+            id: user.id,
+            email: user.email,
+            role: user.role,
+        }
+        const token = jwt.sign(userPayload, process.env.JWT_SECRET_KEY, {
             expiresIn: "1h",
         })
         return {
