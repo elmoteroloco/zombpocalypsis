@@ -1,10 +1,12 @@
 import { db } from "../config/firebase.config.js"
+import { collection, query, where, getDocs } from "firebase/firestore"
 
-const usersCollection = db.collection("users")
+const usersCollection = collection(db, "users")
 
 async function findByEmail(email) {
     try {
-        const querySnapshot = await usersCollection.where("email", "==", email).limit(1).get()
+        const q = query(usersCollection, where("email", "==", email))
+        const querySnapshot = await getDocs(q)
         if (querySnapshot.empty) {
             return null
         }
