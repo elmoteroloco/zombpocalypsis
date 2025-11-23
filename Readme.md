@@ -4,39 +4,15 @@ Este es el Back End del proyecto Full Stack Node.js realizado para el trabajo Pr
 
 **Importante:** Este proyecto tiene una finalidad puramente académica y de demostración.
 
+---
+
 ## Sobre el Proyecto
 
-Esta API REST es el **cerebro** detrás del universo `zombpocalypsis`. No se trata de un simple gestor de productos, sino del motor que impulsa la lógica de negocio, la persistencia de datos y la seguridad para una experiencia de juego de supervivencia.
+La API REST es encargada del manejo de Login de los usuarios y del control de inventarios del juego
 
-Construida con Node.js, Express y Firestore, esta API fue diseñada para ser consumida por su proyecto hermano, el **zombpocalypsis-terminal**, una interfaz de terminal retro que funciona como el centro de comando del jugador.
+Construida con Node.js, Express y Firestore, esta API fue diseñada para ser consumida por su proyecto hermano, el **zombpocalypsis-terminal**, una interfaz de terminal "retro".
 
-Juntos, ambos proyectos conforman la prueba de concepto de un sistema de juego RPG, donde los jugadores gestionan inventarios, comercian y sobreviven en un mundo post-apocalíptico.
-
-## Hoja de Ruta del Proyecto
-
-El desarrollo del ecosistema Zombpocalypsis se planifica en fases, comenzando con un Producto Mínimo Viable (MVP) y expandiéndose hacia una experiencia más rica.
-
-### Fase 1: Fundación (MVP)
-*El objetivo es construir el núcleo jugable y desplegar una versión funcional.*
-
--   [ ] **Sistema de Contenedores (Backend):** Implementar una colección `inventarios` en Firestore que funcione como base para cualquier tipo de contenedor de ítems (mochilas, almacenes, etc.).
--   [ ] **API de Mochila Personal (Backend):** Crear los endpoints (`/api/mochila`) que permitan a un usuario gestionar su propio inventario.
--   [ ] **Comandos de Jugador (Frontend):** Desarrollar los comandos `mochila`, `comprar` y `vender` para interactuar con la API.
--   [ ] **Despliegue Inicial:** Publicar la API en Vercel y la terminal en GitHub Pages para tener una versión funcional y accesible.
-
-### Fase 2: Expansión del Mundo
-*El objetivo es dar vida al entorno, poblándolo con más interacciones.*
-
--   [ ] **NPCs y Comerciantes:** Utilizar el sistema de contenedores para crear inventarios para Vendedores NPC.
--   [ ] **Saqueo y Descubrimiento:** Implementar el comando `saquear` para permitir a los jugadores obtener ítems de contenedores estáticos en el mundo (almacenes abandonados, vehículos, etc.).
--   [ ] **Economía Persistente:** Mover el manejo de los créditos/dinero del jugador al backend para que sea persistente entre sesiones.
-
-### Fase 3: El Mundo Viviente
-*El objetivo es profundizar en las mecánicas de RPG y la narrativa.*
-
--   [ ] **Sistema de Misiones:** Crear la lógica y los comandos (`misiones`, `aceptar`) para un diario de misiones.
--   [ ] **Progresión del Personaje:** Implementar comandos como `stats` y `perks` para mostrar la evolución del jugador.
--   [ ] **Comunicaciones:** Desarrollar un sistema de `radio` o `chat` para recibir mensajes de NPCs o interactuar con otros jugadores.
+Juntos, ambos proyectos conforman una prueba de concepto para un sistema de juego RPG, donde los jugadores gestionan inventarios, comercian y sobreviven en un mundo post-apocalíptico.
 
 ---
 
@@ -54,10 +30,11 @@ La API reclama autenticación para todas las rutas, exceptuando la necesaria par
     "password": "alguna-contraseña-segura"
 }`
 
-
-(Los datos de email y contraseña son solo un ejemplo)
+(Los datos de email y contraseña son solo de ejemplo)
 
 Las contraseñas de los usuarios se almacenan de forma segura en la base de datos utilizando el algoritmo *bcryptjs*. Además, el sistema de autenticación distingue entre usuarios con rol de "administrador" y usuarios con rol de "jugador", permitiendo controlar el acceso a las diferentes funcionalidades de la API.
+
+---
 
 ## Endpoints
 **Productos (Inventario)**
@@ -114,6 +91,7 @@ En ambos casos, solo es necesario enviar los campos que se desean modificar.
 
 `DELETE /api/products/:id`
 
+---
 
 ## Arquitectura
 
@@ -123,6 +101,8 @@ El proyecto sigue una arquitectura por capas para separar responsabilidades:
 **Controladores (controllers):** Manejan la lógica de las peticiones HTTP.
 **Servicios (services):** Coordinan la lógica de negocio.
 **Modelos (models):** Interactúan directamente con la base de datos (Firestore).
+
+---
 
 ### Tecnologías Utilizadas
 *- Node.js y Express:* Para la creación del servidor.
@@ -138,3 +118,11 @@ El proyecto sigue una arquitectura por capas para separar responsabilidades:
 *- dotenv:* Para el manejo de variables de entorno.
 
 *- cors y express.json():* Middlewares esenciales para la comunicación y el parseo de peticiones.
+
+---
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Podés ver el archivo LICENSE para más detalles.
+
+---
