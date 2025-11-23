@@ -1,5 +1,3 @@
-// e:\%_TPF_NODE_%\zombpocalypsis\src\middlewares\validation.middleware.js
-
 function validateProduct(req, res, next) {
     const { name, price, stock, category } = req.body
     const errors = []
