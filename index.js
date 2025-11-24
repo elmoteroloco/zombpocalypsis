@@ -14,6 +14,14 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "Bienvenido a la API de Zombpocalypsis.",
+        documentation: "Se requiere una interfaz (como la Terminal Zombpocalypsis o Postman) para interactuar.",
+        version: "1.0.0",
+    })
+})
+
 app.use("/api", authRoutes)
 
 app.use("/api", productRoutes)
