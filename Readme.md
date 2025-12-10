@@ -97,10 +97,10 @@ En ambos casos, solo es necesario enviar los campos que se desean modificar.
 
 El proyecto sigue una arquitectura por capas para separar responsabilidades:
 
-**Rutas (routes):** Definen los endpoints de la API.
-**Controladores (controllers):** Manejan la lógica de las peticiones HTTP.
-**Servicios (services):** Coordinan la lógica de negocio.
-**Modelos (models):** Interactúan directamente con la base de datos (Firestore).
+**Rutas (routes):** Definen los endpoints de la API.  
+**Controladores (controllers):** Manejan la lógica de las peticiones HTTP.  
+**Servicios (services):** Coordinan la lógica de negocio.  
+**Modelos (models):** Interactúan directamente con la base de datos (Firestore).  
 
 ---
 
